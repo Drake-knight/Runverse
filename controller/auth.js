@@ -19,22 +19,22 @@ const setCookies = (res, data) => {
     const { participatedEvents, ...forToken } = data;
     const token = jwt.sign(forToken, CSR_SECRET);  ///, { expiresIn: '1h' }
 
-    //Secure the cookie (check if it was set with the domain mentioned and not locally)
-    // const opts = IS_PRODUCTION
-    //     ? {
-    //         domain: ""
-    //     }
-    //     : {};
+    // Secure the cookie (check if it was set with the domain mentioned and not locally)
+    const opts = IS_PRODUCTION
+        ? {
+            domain: "https://runverve.onrender.com"
+        }
+        : {};
 
     res.cookie(CSR_AUTH_TOKEN, token, {
         secure: IS_PRODUCTION,
         httpOnly: true,
-        // ...opts
+        ...opts
     });
 
     res.cookie(CSR_USER, JSON.stringify(data), {
         secure: IS_PRODUCTION,
-        // ...opts
+        ...opts
     });
 };
 
@@ -257,22 +257,22 @@ const resetPasswordFromCode = async (req, res) => {
 //Logout
 const logout = async (req, res) => {
     try {
-        // const opts = IS_PRODUCTION
-        //     ? {
-        //         domain: ""
-        //     }
-        //     : {};
+        const opts = IS_PRODUCTION
+            ? {
+                domain: "https://runverve.onrender.com"
+            }
+            : {};
 
         //Clear all the Cookies that was set
         res.clearCookie(CSR_AUTH_TOKEN, {
             secure: IS_PRODUCTION,
             httpOnly: true,
-            // ...opts
+            ...opts
         });
 
         res.clearCookie(CSR_USER, {
             secure: IS_PRODUCTION,
-            // ...opts
+            ...opts
         });
         res.json({ message: "Logged Out" });
     } catch (error) {

@@ -20,6 +20,7 @@ const main = async () => {
             credentials: true,
             origin: [
                 /https?:\/\/localhost:\d{4}/,
+                "https://github.com/"
             ]
         })
     );
