@@ -4,6 +4,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import apiRouter from "./routes/Routes.js";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 
@@ -22,8 +25,8 @@ const main = async () => {
     );
 
     app.use(cookieParser());
-    app.use(express.json({ limit: "50mb" }));
-    app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
     app.use(
         helmet({
