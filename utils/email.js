@@ -3,6 +3,7 @@ import Mailgen from "mailgen";
 import dotenv from "dotenv";
 dotenv.config();
 
+//transporter is a way to send mail.
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -12,6 +13,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// mailgen is a way to generate mail.
 const mailGenerators = {
     "email-verification": new Mailgen({
         theme: "default",
@@ -46,6 +48,7 @@ export const sendMail = async (email, type, data) => {
             throw new Error(`Invalid email type: ${type}`);
         }
 
+        // Generate an HTML email with the provided data objects.
         let emailTemplate;
         switch (type) {
             case "email-verification":

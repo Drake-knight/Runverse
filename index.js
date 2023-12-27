@@ -1,4 +1,4 @@
-import { connectToMongoDB } from "./config//_mongodb.js";
+import { connectToMongoDB } from "./config/_mongodb.js";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
